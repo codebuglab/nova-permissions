@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Resource as NovaResource;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Scout\Builder;
+use Illuminate\Support\Str;
 
 abstract class ResourceForUser extends NovaResource
 {
@@ -22,7 +23,7 @@ abstract class ResourceForUser extends NovaResource
 		$user = $request->user();
 		
 		// User Can View all Entries and is not restricted to its own
-		if (!$user->hasPermissionTo(parent::uriKey() . '.view')) {
+		if (!$user->hasPermissionTo(Str::replace("-",' ',parent::uriKey()) . '.view')) {
 			return $query;
 		}
 		
@@ -42,7 +43,7 @@ abstract class ResourceForUser extends NovaResource
 		$user = $request->user();
 		
 		// If the User has only Permission to view his own Entries, we scope the query.
-		if ($user->hasPermissionTo(parent::uriKey() . '.view')) {
+		if ($user->hasPermissionTo(Str::replace("-",' ',parent::uriKey()) . '.view')) {
 			return $query->where('user_id', $user->id);
 		}
 		
@@ -64,7 +65,7 @@ abstract class ResourceForUser extends NovaResource
 		$user = $request->user();
 		
 		// User Can View all Entries and is not restricted to its own
-		if (!$user->hasPermissionTo(parent::uriKey() . '.view')) {
+		if (!$user->hasPermissionTo(Str::replace("-",' ',parent::uriKey()) . '.view')) {
 			return parent::relatableQuery($request, $query);
 		}
 		
@@ -84,7 +85,7 @@ abstract class ResourceForUser extends NovaResource
 		$user = $request->user();
 		
 		// User Can View all Entries and is not restricted to its own
-		if ($user->hasPermissionTo(parent::uriKey() . '.view')) {
+		if ($user->hasPermissionTo(Str::replace("-",' ',parent::uriKey()) . '.view')) {
 			return $query;
 		}
 		
