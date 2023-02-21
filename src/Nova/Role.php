@@ -102,10 +102,10 @@ class Role extends Resource
 				->updateRules('unique:' . config('permission.table_names.roles') . ',name,{{resourceId}}')
 			
 			,
-			Select::make(__('Guard Name'), 'guard_name')
-				->options($guardOptions->toArray())
-				->rules(['required', Rule::in($guardOptions)])
-			,
+			// Select::make(__('Guard Name'), 'guard_name')
+			// 	->options($guardOptions->toArray())
+			// 	->rules(['required', Rule::in($guardOptions)])
+			// ,
 			Checkbox::make(__('Permissions'), 'prepared_permissions')->withGroups()->options(SpatiePermission::all()->map(function ($permission, $key) {
 				return [
 					'group'  => __(ucfirst($permission->group)),
@@ -162,4 +162,10 @@ class Role extends Resource
 	{
 		return __('Role');
 	}
+
+	 public function authorizedToDelete(Request $request)
+    {
+		
+        return ($this->id !== 1);
+    }
 }
