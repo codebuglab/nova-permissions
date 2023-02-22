@@ -168,4 +168,9 @@ class Role extends Resource
 		
         return ($this->id !== 1);
     }
+	 public function authorizedToUpdate(Request $request)
+    {
+		
+        return ($this->id !== 1);
+    }
 }
