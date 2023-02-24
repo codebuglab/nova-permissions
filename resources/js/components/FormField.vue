@@ -36,7 +36,7 @@
                         <div
                                 v-for="(permission, option) in permissions"
                                 :key="permission.option"
-                                class="px-1 py-1 items-center"
+                                class="px-1 py-1 items-center h" style="position: relative;min-height: 40px;margin-bottom: 15px;padding-left: 70px;"
                         >
                             <checkbox
                                     :value="permission.option"
@@ -47,6 +47,7 @@
                             <label
                                     :for="field.name"
                                     v-text="fixNaming(permission.label)"
+                                    style="margin-top: 7px;display: inline-block;margin-bottom: 0;"
                                     @click="toggleOption(permission.option)"
                             ></label>
                         </div>
