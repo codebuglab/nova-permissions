@@ -36,7 +36,7 @@
                         <div
                                 v-for="(permission, option) in permissions"
                                 :key="permission.option"
-                                class="px-1 py-1 items-center h" style="position: relative;min-height: 40px;margin-bottom: 15px;padding-left: 70px;"
+                                class="px-1 py-1 items-center h" style="position: relative;min-height: 40px;margin-bottom: 15px;padding-left: 75px;"
                         >
                             <checkbox
                                     :value="permission.option"
