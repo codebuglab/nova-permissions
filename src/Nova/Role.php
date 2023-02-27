@@ -112,7 +112,7 @@ class Role extends Resource
 					'option' => $permission->name,
 					'label'  => __($permission->description),
 				];
-			})->groupBy('group')->toArray())
+			})->groupBy('group')->toArray())->size('w-full')
 			,
 			Text::make(__('Users'), function () {
 				return $this->users()->count();
